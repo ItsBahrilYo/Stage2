@@ -504,7 +504,7 @@ sudo certbot
 * Masuk ke directory aplikasi frontend di server aplikasi dan buka file api.js di src/config/
 * Lalu ganti Base URL dengan domain backend tadi
 
-[Markdown Logo](https://github.com/ItsBahrilYo/Stage2/blob/master/minggu-1/rabu/tugas/7-GantiBaseURL-apijs-frontend/1.png?raw=true)
+![Markdown Logo](https://github.com/ItsBahrilYo/Stage2/blob/master/minggu-1/rabu/tugas/7-GantiBaseURL-apijs-frontend/1.png?raw=true)
 
 ## 8. Jalankan Aplikasi
 
@@ -512,11 +512,11 @@ sudo certbot
 ```bash
 pm2 start ecosystem.config.js
 ```
-[Markdown Logo](https://github.com/ItsBahrilYo/Stage2/blob/master/minggu-1/rabu/tugas/8-StartApp/1.png?raw=true)
+![Markdown Logo](https://github.com/ItsBahrilYo/Stage2/blob/master/minggu-1/rabu/tugas/8-StartApp/1.png?raw=true)
 
-[Markdown Logo](https://github.com/ItsBahrilYo/Stage2/blob/master/minggu-1/rabu/tugas/8-StartApp/2.png?raw=true)
+![Markdown Logo](https://github.com/ItsBahrilYo/Stage2/blob/master/minggu-1/rabu/tugas/8-StartApp/2.png?raw=true)
 
-[Markdown Logo](https://github.com/ItsBahrilYo/Stage2/blob/master/minggu-1/rabu/tugas/8-StartApp/4.png?raw=true)
+![Markdown Logo](https://github.com/ItsBahrilYo/Stage2/blob/master/minggu-1/rabu/tugas/8-StartApp/4.png?raw=true)
 
 
 
