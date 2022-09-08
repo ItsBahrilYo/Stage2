@@ -516,7 +516,7 @@ pm2 start ecosystem.config.js
 
 [Markdown Logo](https://github.com/ItsBahrilYo/Stage2/blob/master/minggu-1/rabu/tugas/8-StartApp/2.png?raw=true)
 
-
+[Markdown Logo](https://github.com/ItsBahrilYo/Stage2/blob/master/minggu-1/rabu/tugas/8-StartApp/4.png?raw=true)
 
 
 
