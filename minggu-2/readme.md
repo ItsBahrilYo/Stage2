@@ -9,7 +9,7 @@ RUN npm install
 EXPOSE 3000
 CMD [ "npm", "start" ]
 ```
-IMAGE
+![Markdown Logo](https://github.com/ItsBahrilYo/Stage2/blob/master/minggu-2/docker/dockerfilebe.png?raw=true)
 
 ### 2.
 
@@ -22,9 +22,9 @@ IMAGE
 
 ### 3.
 * Chekc images apakah sudah terbuat
-```bash
-IMAGE
-```
+
+![Markdown Logo](https://github.com/ItsBahrilYo/Stage2/blob/master/minggu-2/docker/checkimages.png?raw=true)
+
 ### 4.
 * Push images yang sudah dibuat tadi ke repository di akun docker hub
 
