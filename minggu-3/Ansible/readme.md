@@ -35,15 +35,37 @@ ansible all-i inventory.ini -m ping
 ## 2. Create User
 ### First create a file with .yaml extention and create a user in it using these commands
 ```bash
-- hosts : all
+-- hosts : all
   gather_facts: no
   become : true
-  
-- name: "Create User"
-  ansible.builtin.user:
-      name: Bahril Ilmid Nugroho
-      password: yeaboa
+  tasks:
+
+
+    - name: "Create User"
+      ansible.builtin.user:
+        name: bahril
+        group: sudo 
+        shell: /bin/bash
+        system: no
+        createhome: yes
+        home: /home/bahril
+
+    - name: "Change PasswordAuth"
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: 'PasswordAuthentication no'
+        line: 'PasswordAuthentication yes'    
+    
+
+    - name: "reload sshd"
+      systemd:
+        name: sshd
+        state: reloaded
 ```
+![Markdown Logo](https://github.com/ItsBahrilYo/Stage2/blob/master/minggu-3/Ansible/user.png?raw=true)
+
+
+
 ## 3. Install Nginx and Docker using Ansible
 
 ### Same as before, we should create an ansible playbook with .yaml extention for nginx and docker

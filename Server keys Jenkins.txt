@@ -1,0 +1,122 @@
+jenkins 103.174.114.178	
+
+
+
+
+
+
+docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk11
+
+/var/jenkins_home/secrets/initialAdminPassword
+1257bef87b9842cb8a7dcf60d5990d5e
+
+b94e04a9469142e0bf17bb3f49a6bbc0
+
+
+ec48437837999b49d1778125458d036a936465a99b44054889acf7b4e61c2a52
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+## Jenkinsfile ##
+
+def secret = 'Jenkinskel4'
+def server = 'jenkinss@103.174.114.178'
+def directory = 'housy-frontend'
+def branch = 'main'
+
+pipeline{
+    agent any
+    stages{
+        stage ('compose down &  pull'){
+            steps{
+                sshagent([secret]) {
+                    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
+                    docker-compose down
+                    docker system prune -f
+                    cd ${directory}
+                    git pull origin ${branch}
+                    exit
+                    EOF"""
+                }
+            }
+        }
+        stage ('docker build'){
+            steps{
+                sshagent([secret]) {
+                    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
+                    cd ${directory}
+                    docker-compose build
+                    exit
+                    EOF"""
+                }
+            }
+        }
+        stage ('docker up'){
+            steps{
+                sshagent([secret]) {
+                    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
+                    cd ${directory}
+                    docker-compose up -d
+                    exit
+                    EOF"""
+                }
+            }
+        }
+    }
+}
+
+
+======================================================================================================================================================
+
+## Dockerfile fe ##
+FROM node:10
+WORKDIR /usr/app
+COPY . .
+RUN npm install
+EXPOSE 3000
+CMD [ "npm", "start" ]
+
+========================================================================================================================================================
+
+## DockerCompose.yaml fe ##
+
+version: '3.8'
+services:
+ frontend:
+   build: .
+   container_name: fe
+   image: yubisayu/housy-fe:stable
+   stdin_open: true
+   ports:
+    - 3030:3000
+
+
+=========================================================================================================================================================
+
+## Dockerfile be ##
+
+FROM node:10
+WORKDIR /usr/app
+COPY . .
+RUN npm install
+RUN npm install sequelize-cli -g
+RUN npx sequelize db:migrate
+EXPOSE 5000
+CMD [ "npm", "start" ]
+
+==========================================================================================================================================================
+
+## DockerCompose.yaml be ##
+
+version: '3.8'
+services:
+ frontend:
+   build: .
+   container_name: be
+   image: yubisayu/housy-be:stable
+   stdin_open: true
+   ports:
+    - 5050:5000
+
+
+
